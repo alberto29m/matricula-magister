@@ -7,9 +7,9 @@
         <h1>¡Comencemos con tu matrícula!</h1>
         <p>Para comenzar a especializarte, vamos a realizar unas preguntas para darte el mejor servicios</p>
         <div class="home__buttons">
-            <router-link to="/preguntas"><button class="home__buttons--start">Comenzar</button> </router-link>
+            <router-link to="/preguntas/especializacion"><button class="home__buttons--start">Comenzar</button> </router-link>
             
-            <button class="home__buttons--go-back">Volver atrás</button>
+            <router-link to="/home"><button class="home__buttons--go-back">Volver atrás</button></router-link>
         </div>
     </div>
     
