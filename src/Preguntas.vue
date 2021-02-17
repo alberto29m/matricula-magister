@@ -6,12 +6,12 @@
             <h2>Magister</h2>
         </div>
         <nav class="navigation__timeline">
-            <router-link tag="li" class-active="active" to="/preguntas">¿En qué te quieres especializar?</router-link>
-            <router-link tag="li" class-active="active" to="/preguntas">Horario y Modalidad</router-link>
-            <router-link tag="li" class-active="active" to="/preguntas">Tarifa</router-link>
-            <router-link tag="li" class-active="active" to="/preguntas">Datos personales</router-link>
-            <router-link tag="li" class-active="active" to="/preguntas">Dirección</router-link>
-            <router-link tag="li" class-active="active" to="/preguntas">Forma de pago</router-link>
+            <router-link tag="li" class-active="active" to="/preguntas/especializacion">¿En qué te quieres especializar?</router-link>
+            <router-link tag="li" class-active="active" to="/preguntas/horario">Horario y Modalidad</router-link>
+            <router-link tag="li" class-active="active" to="/preguntas/tarifa">Tarifa</router-link>
+            <router-link tag="li" class-active="active" to="/preguntas/datos">Datos personales</router-link>
+            <router-link tag="li" class-active="active" to="/preguntas/direccion">Dirección</router-link>
+            <router-link tag="li" class-active="active" to="/preguntas/pago">Forma de pago</router-link>
         </nav>
         <div class="navigation__image">
             <img :src="require(`./assets/${imageUrl}`)"/>
@@ -41,6 +41,7 @@
       background-color: #0A3868;
     }
     .navigation{
+      width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -109,7 +110,7 @@
           &:hover{
             color:white;
           }
-          &:active{
+          &.router-link-exact-active{
             color:white;
 
             &:before{
@@ -124,7 +125,7 @@
 
       &__image{
         width: 100%;
-        height: 27vh;
+        height: 35vh;
         position:absolute;
         bottom: 0;
         
