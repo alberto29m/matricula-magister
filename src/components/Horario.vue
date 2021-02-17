@@ -4,11 +4,11 @@
         <div class="formulario__data">
             <h1>¿En qué te quieres especializar?</h1>
             <div class="formulario__row">
-                <div class="formulario__select">
+                <div class="formulario__select w100">
                     <h4>Modalidad</h4>
                     <p>(Selecciona una opción)</p>
                     <ul class="formulario__options">
-                        <li class="formulario__option" v-for="modalidad in modalidades">
+                        <li class="formulario__button" v-for="modalidad in modalidades">
                             {{modalidad}}
                         </li>  
                     </ul>
@@ -20,7 +20,7 @@
                 <h4>Horario</h4>
                 <p>(Selecciona una opción)</p>
                  <ul class="formulario__options">
-                        <li class="formulario__option" v-for="horario in horarios">
+                        <li class="formulario__button w100" v-for="horario in horarios">
                             {{horario}}
                         </li>  
                     </ul>
@@ -73,5 +73,24 @@ export default {
 </script>
 
 <style lang="scss">
-    
+.formulario{
+    &__options{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding:0;
+
+        li{
+            list-style: none;
+            width: 40%;
+            margin-right:5%;
+            margin-bottom: 2vh;
+
+            &.w100{
+                width: auto;
+            }
+        }
+    }
+}
 </style>

@@ -107,6 +107,10 @@ body {
 
   &__select {
     width: 40%;
+
+    &.w100{
+      width: 100%;
+    }
   }
 
   &__buttons {
