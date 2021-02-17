@@ -1,6 +1,6 @@
 <template>
     <div class="formulario">
-        <preguntas image-url="horario.svg"></preguntas>
+        <preguntas image-url="tarifa.svg"></preguntas>
         <div class="formulario__data">
             <h1>Selecciona tu tarifa</h1>
         
@@ -28,7 +28,7 @@ import Preguntas from '../Preguntas.vue'
 import db from '../firebaseInit'
 
 export default { 
-    name: 'Tarifas',
+    name: 'Tarifa',
     components:{
         Preguntas
     },

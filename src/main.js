@@ -9,6 +9,7 @@ import Tarifa from './components/Tarifa.vue'
 import Datos from './components/Datos.vue'
 import Direccion from './components/Direccion.vue'
 import Pago from './components/Pago.vue' 
+import Gracias from './components/Gracias.vue' 
 
 
 Vue.use(VueRouter);
@@ -22,7 +23,8 @@ const routes = [
   {path:'/preguntas/tarifa', component: Tarifa},
   {path:'/preguntas/datos', component: Datos},
   {path:'/preguntas/direccion', component: Direccion},
-  {path:'/preguntas/pago', component: Pago}
+  {path:'/preguntas/pago', component: Pago},
+  {path:'/preguntas/gracias', component: Gracias}
 ];
 
 Vue.component('home', Home);
@@ -33,6 +35,7 @@ Vue.component('tarifa', Tarifa);
 Vue.component('datos', Datos);
 Vue.component('direccion', Direccion);
 Vue.component('pago', Pago);
+Vue.component('gracias', Gracias);
 
 
 

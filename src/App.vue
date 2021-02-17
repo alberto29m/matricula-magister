@@ -72,13 +72,18 @@ body {
       padding: 0.75rem 1rem;
       font-size: 15px;
       font-family: Quicksand;
-      color: darkgrey;
+      color: #577294;
+      cursor: pointer;
+    }
+
+    input[type=radio]{
       cursor: pointer;
     }
 
     
   }
   &__button{
+    font-family: Quicksand;
     position: relative;
     min-width: 128px;
     width: auto;
@@ -90,14 +95,29 @@ body {
     background: white;
     margin-right: 1.5rem;
     cursor: pointer;
+  }
+
+  &__input{
+    margin-top: 2vh;
+    background-color: white;
+    padding: 0.75rem 1rem;
+    border: 1px solid #577294;
+    border-radius: 10px;
+    color: #577294;
     
-   
+    &::placeholder {
+      color: darkgray;
+    }
   }
 
   &__row {
     display: flex;
     justify-content: space-between;
     padding-top: 4rem;
+
+    &.no-padding{
+      padding: 0;
+    }
   }
   &__column {
     display: flex;
