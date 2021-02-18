@@ -6,24 +6,24 @@
         
             <div class="formulario__column">
                 <h4>Nombre completo</h4>
-                <input type="text" class="formulario__input" placeholder="Ej: Camila Pérez Sánchez">
+                <input type="text" id="nombre" class="formulario__input" placeholder="Ej: Camila Pérez Sánchez">
             </div>
             <div class="formulario__row">
                 <div class="formulario__column">
                     <h4>DNI - NIE</h4>
-                    <input type="number" class="formulario__input" placeholder="Ej: Y56748659P">
+                    <input type="number" id="dni" class="formulario__input" placeholder="Ej: Y56748659P">
                 </div>
                 <div class="formulario__column">
                     <h4>Móvil</h4>
-                    <input type="text" class="formulario__input" placeholder="Ej: 654789735">
+                    <input type="text" id="movil" class="formulario__input" placeholder="Ej: 654789735">
                 </div>
                 <div class="formulario__column"> 
                     <h4>Email</h4>
-                    <input type="text" class="formulario__input" placeholder="Ej: camila.per.san@gmail.com">
+                    <input type="text" id="email" class="formulario__input" placeholder="Ej: camila.per.san@gmail.com">
                 </div>
             </div>
             <nav class="formulario__nav">
-                <router-link tag="li" class="formulario__nav--next" to="/preguntas/direccion">Siguiente</router-link>
+                <li @click="addDatos" class="formulario__nav--next">Siguiente</li>
                 <router-link tag="li" class="formulario__nav--back" to="/preguntas/tarifa">Volver atrás</router-link>
             </nav>
             
@@ -43,7 +43,33 @@ export default {
     },
     data (){
         return {
-            tarifas: [],
+            
+        }
+    },
+    methods: {
+         addDatos () {
+            let storage = JSON.parse(window.localStorage.getItem('matricula'));
+            const nombreSelected = document.getElementById('nombre').value;
+            const dniSelected = document.getElementById('dni').value;
+            const movilSelected = document.getElementById('movil').value;
+            const emailSelected = document.getElementById('email').value;
+            if((nombreSelected!="") && (dniSelected!="") && (movilSelected!="") && (emailSelected!="")){
+                const datosData = {
+                    nombre : nombreSelected,
+                    dni : dniSelected,
+                    movil : movilSelected,
+                    email: emailSelected
+                }
+                let newStorage = {
+                    ...storage,
+                    ...datosData
+                }
+                window.localStorage.setItem('matricula', JSON.stringify(newStorage));
+                this.$router.push('/preguntas/direccion');
+            }else{
+                alert('Rellena todos los campos para continuar');
+            }
+            
         }
     }
 }

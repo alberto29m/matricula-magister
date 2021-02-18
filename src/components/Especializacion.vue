@@ -7,15 +7,15 @@
                 <div class="formulario__select">
                     <h4>Rama</h4>
                     <p>(Selecciona una opción)</p>
-                    <select name="rama" id="rama">
-                        <option v-for="rama in ramas"> {{rama}} </option>
+                    <select name="rama" id="rama" :required="true">
+                        <option v-for="rama in ramas" v-bind:value="rama"> {{rama}} </option>
                     </select>
                 </div>
                 <div class="formulario__select">
                     <h4>Provincia</h4>
                     <p>(Selecciona una opción)</p>
-                    <select name="provincia" id="provincia">
-                        <option v-for="provincia in provincias"> {{provincia}}</option>
+                    <select name="provincia" id="provincia" :required="true">
+                        <option v-for="provincia in provincias" v-bind:value="provincia"> {{provincia}}</option>
                     </select>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                  </div>
             </div>
             <nav class="formulario__nav">
-                <router-link tag="li" class="formulario__nav--next" to="/preguntas/horario">Siguiente</router-link>
+                <li @click="addEspecializacion" class="formulario__nav--next" to="/preguntas/horario">Siguiente</li>
             </nav>
             
         </div> 
@@ -76,6 +76,19 @@ export default {
                 }
             })
         })
+    },
+    methods:{
+        addEspecializacion () {
+            const ramaSelected = document.getElementById('rama').value;
+            const provinciaSelected = document.getElementById('provincia').value;
+            const especializacionData = {
+                rama : ramaSelected,
+                provincia : provinciaSelected
+            }
+            let newStorage = JSON.stringify(especializacionData);
+            window.localStorage.setItem('matricula', newStorage);
+            this.$router.push('/preguntas/horario');
+        }
     }
 }
 </script>

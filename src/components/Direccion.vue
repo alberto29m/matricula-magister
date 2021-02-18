@@ -6,7 +6,7 @@
 
             <div class="formulario__row">
                 <div class="formulario__select w100">
-                    <h4>Rama</h4>
+                    <h4>Comunidad de Exámen</h4>
                     <p>(Selecciona una opción)</p>
                     <select name="comunidades" id="comunidades">
                         <option v-for="comunidad in comunidades"> {{comunidad}} </option>
@@ -15,36 +15,36 @@
             </div>
         
             <div class="formulario__column">
-                <h4>Nombre completo</h4>
-                <input type="text" class="formulario__input" placeholder="Ej: Camila Pérez Sánchez">
+                <h4>Dirección</h4>
+                <input type="text" id="direccion" class="formulario__input" placeholder="Ej: Calle Ramiro de Maxtu, 10, 4D ">
             </div>
             <div class="formulario__row no-padding">
                 <div class="formulario__column">
-                    <h4>DNI - NIE</h4>
-                    <input type="number" class="formulario__input" placeholder="Ej: Y56748659P">
+                    <h4>Localidad</h4>
+                    <input type="text" id="localidad" class="formulario__input" placeholder="Ej: Madrid">
                 </div>
                 <div class="formulario__column">
-                    <h4>Móvil</h4>
-                    <input type="text" class="formulario__input" placeholder="Ej: 654789735">
+                    <h4>Provincia</h4>
+                    <input type="text" id="provinciaDirec" class="formulario__input" placeholder="Ej: Madrid">
                 </div>
                 <div class="formulario__column"> 
-                    <h4>Email</h4>
-                    <input type="text" class="formulario__input" placeholder="Ej: camila.per.san@gmail.com">
+                    <h4>Código Postal</h4>
+                    <input type="number" id="cd" class="formulario__input" placeholder="Ej: 28040">
                 </div>
             </div>
             <div class="formulario__row">
                 <div>
-                    <input type="radio" id="information" value="information">
+                    <input type="radio" id="information" value="information" required="required">
                     <label for="informacion">Acepto la <a href="#">información legal</a></label>
                 </div>
                 <div>
-                    <input type="radio" id="protection" value="protection">
+                    <input type="radio" id="protection" value="protection" required="required">
                     <label for="protection">Acepto la <a href="#">protección de datos</a></label>
                 </div>
                 
             </div>
             <nav class="formulario__nav">
-                <router-link tag="li" class="formulario__nav--next" to="/preguntas/pago">Siguiente</router-link>
+                <li @click="addDireccion" class="formulario__nav--next">Siguiente</li>
                 <router-link tag="li" class="formulario__nav--back" to="/preguntas/datos">Volver atrás</router-link>
             </nav>
             
@@ -76,6 +76,35 @@ export default {
                 }
             })
         })
+    },
+    methods: {
+         addDireccion () {
+            let storage = JSON.parse(window.localStorage.getItem('matricula'));
+            
+            const comunidadSelected = document.getElementById('comunidades').value;
+            const direccionSelected = document.getElementById('direccion').value;
+            const localidadSelected = document.getElementById('localidad').value;
+            const provinciaDirecSelected = document.getElementById('provinciaDirec').value;
+             const cdSelected = document.getElementById('cd').value;
+            if((comunidadSelected!="") && (direccionSelected!="") && (localidadSelected!="") && (provinciaDirecSelected!="") && (cdSelected!="")){
+                const direccionData = {
+                    comunidad : comunidadSelected,
+                    direccion : direccionSelected,
+                    localidad : localidadSelected,
+                    provinciaDirec: provinciaDirecSelected,
+                    codigoPostal: cdSelected
+                }
+                let newStorage = {
+                    ...storage,
+                    ...direccionData
+                }
+                window.localStorage.setItem('matricula', JSON.stringify(newStorage));
+                this.$router.push('/preguntas/pago');
+            }else{
+                alert('Rellena todos los campos para continuar');
+            }
+            
+        }
     }
 }
 </script>

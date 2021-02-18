@@ -21,7 +21,7 @@
                 <a href="https://web.magister.com/">Ver información legal &#8594;</a>
             </div>
             <nav class="formulario__nav">
-                <router-link tag="li" class="formulario__nav--next" to="/preguntas/gracias">Enviar</router-link>
+                <li @click='rellenarMatricula' class="formulario__nav--next" >Enviar</li>
                 <router-link tag="li" class="formulario__nav--back" to="/preguntas/direccion">Volver atrás</router-link>
             </nav>
             
@@ -44,8 +44,36 @@ export default {
             
         }
     },
-    created(){
-        
+    methods: {
+        rellenarMatricula(){
+            let storage = JSON.parse(window.localStorage.getItem('matricula'));
+            const name = storage.nombre;
+
+            //Día de matriculación
+            let today = new Date();
+            let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            
+            //Hora de matriculación
+            let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+            const dateTime = {
+                dia: date,
+                hora: time
+            } 
+            const matriculaCompleta = {
+                ...storage,
+                ...dateTime
+            }
+            
+            //Envío la matrícula a firestore cuando pulse el botón enviar
+            db.collection("matricula").doc(name).set(matriculaCompleta)
+            .then(docRef => this.$router.push('/preguntas/gracias'))
+            .catch(error => console.log(ERROR))
+
+            //limpio el localStorage
+            window.localStorage.clear()
+        }
+       
     }
 }
 </script>

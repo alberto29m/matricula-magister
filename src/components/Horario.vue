@@ -58,7 +58,6 @@ export default {
                     this.modalidades.push(data[num]);
                 }
             })
-            console.log(this.modalidades);
         })
         db.collection('horarios').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
